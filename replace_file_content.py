@@ -6,6 +6,7 @@
 
 from io import StringIO
 
+import sys
 import re,os
 # 写文件
 
@@ -68,4 +69,8 @@ def alter(file,old_str,new_str):
     with open(file,"w",encoding="utf-8") as f:
         f.write(file_data)
 
-alter("file1.json", "isBuildInn", "isBuildIn")
+#alter("file1.json", "isBuildInn", "isBuildIn")
+
+# 获取外部传递过来的参数
+print(sys.argv[1])
+alter(sys.argv[1], "lite", "android")
