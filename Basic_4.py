@@ -1,27 +1,13 @@
-# -*- coding: utf-8 -*-
+import csv
+from collections import defaultdict
 
-# 循环
+counts = defaultdict(int)
+with open('data.csv', 'r') as f:
+    reader = csv.DictReader(f)  # 假设第一行为列名，B列的列名为'code'
+    for row in reader:
+        code = row['code'].strip()  # 去除前后空格（可选）
+        counts[code] += 1
 
-names = ['Michael', 'Bob', 'Tracy']
-for name in names:
-    print("Hello %s"%name)
-
-
-sum = 0
-for x in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
-    sum = sum + x
-print(sum)
-
-sum1 = 0
-for x in range(101):
-    sum1 = sum1 + x
-print(sum1)
-
-
-n = 1
-while n <= 100:
-    if n > 10: # 当n = 11时，条件满足，执行break语句
-        break # break语句会结束当前循环
-    print(n)
-    n = n + 1
-print('END')
+# 输出结果
+for code, count in counts.items():
+    print(f"Code: {code}, 行数: {count}")
